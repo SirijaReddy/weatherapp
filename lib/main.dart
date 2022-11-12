@@ -30,31 +30,45 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blue,
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           title: Text("Weather App"),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FutureBuilder(
-                  future: apicall(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 20, 30, 10),
-                        child: Container(
-                          child: Column(children: [
-                            Text(snapshot.data['temp'].toString()),
-                            Text(snapshot.data['description'].toString()),
-                          ]),
-                        ),
-                      );
-                    } else {
-                      return CircularProgressIndicator();
-                    }
-                  })
-            ],
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/cold.jpg"), fit: BoxFit.cover),
+          ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                FutureBuilder(
+                    future: apicall(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 20, 30, 10),
+                          child: Container(
+                            child: Column(children: [
+                              Text(snapshot.data['temp'].toString()),
+                              Text(snapshot.data['description'].toString()),
+                            ]),
+                          ),
+                        );
+                      } else {
+                        return CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                          valueColor: AlwaysStoppedAnimation(
+                              Color.fromARGB(255, 18, 46, 141)),
+                          strokeWidth: 10,
+                        );
+                      }
+                    })
+              ],
+            ),
           ),
         ));
   }
