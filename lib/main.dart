@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/cold.jpg"), fit: BoxFit.cover),
+                image: AssetImage("images/sunny.jpeg"), fit: BoxFit.cover),
           ),
           child: Center(
             child: Column(
